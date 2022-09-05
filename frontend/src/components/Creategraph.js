@@ -20,7 +20,7 @@ function Creategraph() {
   };
 
   return (
-    <div className="col-md-4 col-md-offset-6">
+    <div className="col-md-4 col-md-offset-5">
       <div className="row">
       <form onSubmit={handleSubmit}>
       <div class="col-25">
