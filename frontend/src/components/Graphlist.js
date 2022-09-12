@@ -2,13 +2,12 @@ import React from "react";
 import { useNavigate, generatePath } from "react-router-dom";
 import axios from "axios";
 import { useState, useRef } from "react";
-
 const baseURL = "http://127.0.0.1:8081/graphlist";
 function GraphList() {
   const [query, setQuery] = useState("");
   const [id, setId] = useState();
-
   const [graph, setGraph] = React.useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
 
   let navigate = useNavigate(id);
   const routeChange = e => {
@@ -40,24 +39,30 @@ function GraphList() {
       <br />
 
       <div className="graphlist">
-        <h2 className="text-center ">Node Graph List </h2>
+        <div class="row">
+          <div>
+            <i class="fa fa-search" aria-hidden="true" />
+          </div>
 
-        <div className="col-md-2 form-outline graphlist">
-          Search Graph List Name:{" "}
-          <input
-            type="search"
-            id="form1"
-            className="form-control"
-            placeholder="Enter Post Title"
-            aria-label="Search"
-            onChange={event => setQuery(event.target.value)}
-          />
+          <div class="col-3">
+            <input
+              type="search"
+              id="form1"
+              className="form-control"
+              placeholder="Enter Graph Name"
+              aria-label="Search"
+              onChange={event => setQuery(event.target.value)}
+            />
+          </div>
+          <div class="col-6">
+            <button type="button" className="btn btn-success createPage" onClick={routeCreateGraph}>
+              New
+            </button>
+          </div>
         </div>
-        <button type="button" className="btn btn-success createPage" onClick={routeCreateGraph}>
-          CreateGraph
-        </button>
-        <table className="table table-bordered ">
-          <thead>
+        <br />
+        <table className="table">
+          <thead className="bg-primary">
             <tr>
               <th scope="col-lg-2">GraphID</th>
               <th scope="col-lg-2">GraphName</th>
@@ -83,8 +88,8 @@ function GraphList() {
                   <td onClick={routeChange}>{item.id} </td>
                   <td onClick={routeChange}>{item.name}</td>
                   <td>
-                    <button type="button" className="btn btn-danger" onClick={() => deleteGraphID(item.id)}>
-                      Delete
+                    <button type="button" className="btn-danger" onClick={() => deleteGraphID(item.id)}>
+                      <i class="fa fa-trash-o fa-lg" aria-hidden="true" />
                     </button>
                   </td>
                 </tr>

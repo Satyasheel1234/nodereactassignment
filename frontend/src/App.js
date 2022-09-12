@@ -6,6 +6,7 @@ import Graphlist from "./components/Graphlist";
 import Graphdetails from "./components/Graphdetails";
 import Layout from "./components/Layout";
 import Creategraph from "./components/Creategraph";
+import 'font-awesome/css/font-awesome.min.css';
 
 function App() {
   return (

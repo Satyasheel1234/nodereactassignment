@@ -20,22 +20,22 @@ function Creategraph() {
   };
 
   return (
-    <div className="col-md-4 col-md-offset-5">
+    <div className="container">
       <div className="row">
       <form onSubmit={handleSubmit}>
-      <div class="col-25">
+      <div class="col-5">
         <label >ID:</label>
         </div>
-        <div class="col-md-25">
+        <div class="col-5">
           <input type="text" id="id" value={id} onChange={e => setId(e.target.value)} />
         </div>
-        <div class="col-25">
+        <div class="col-5">
         <label >Name:</label>
         </div>
-        <div class="col-25">
+        <div class="col-5">
           <input type="text" id="name" value={name} onChange={e => setName(e.target.value)} />
         </div>
-        <div class="col-25">
+        <div class="col-5">
           <br></br>
         <button type="submit" className="col-25 btn btn btn-primary">
           submit

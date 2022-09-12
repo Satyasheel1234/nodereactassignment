@@ -17,13 +17,27 @@ app.use(
 var fs = require("fs");
 
 app.post("/addgraph", function(req, res) {
-  console.log(req.body);
+  fs.readFile(__dirname + "/" + "graphs.json", "utf8", function(err, data) {
+    graph = JSON.parse(data);
+    graph.push({
+      id: req.body.id,
+      name: req.body.name,
+      data: { nodes: [], edges: [] }
+    });
+
+    fs.writeFileSync(__dirname + "/" + "graphs.json", JSON.stringify(graph, null, 4), err => {
+      if (err) {
+        return;
+      }
+    });
+  });
   res.send(req.body);
 });
 
 app.get("/graphlist", cors(), function(req, res) {
   fs.readFile(__dirname + "/" + "graphs.json", "utf8", function(err, data) {
     graph = JSON.parse(data);
+    console.log("graph", graph);
     res.end(data);
   });
 });
@@ -45,6 +59,12 @@ app.delete("/graphlist/:id", cors(), (req, res) => {
     data.splice(index, 1);
     console.log(foundGraph);
     res.end(JSON.stringify(foundGraph));
+
+    fs.writeFileSync(__dirname + "/" + "graphs.json", JSON.stringify(data, null, 4), err => {
+      if (err) {
+        return;
+      }
+    });
   });
 });
 
